@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Add instructor field to existing view -->
+        <!--<record model="ir.ui.view" id="view_users_form_inherit">-->
+        <record model="ir.ui.view" id="view_users_form_inherit">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <!--<field name="inherit_id" ref="base.view_user_form"/>-->
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="name"/>
+                    <field name="password"/>
+                    <field name="email"/>
+
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">List User</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">wizard.form</field>
+            <field name="model">openstar.wizarduser</field>
+            <field name="arch" type="xml">
+                <form string="Create user">
+                    <group>
+                        <field name="name"/>
+                        <field widget="mask_regex"
+                               data-inputmask-regex="[a-zA-Z0-9 ._% -] + @ [a-zA-Z0-9-] + \. [a-zA-Z] { 2,4} "
+                               name="email"></field>
+                        <!--<field name="email"/>-->
+                        <field name="password"/>
+                    </group>
+                    <footer>
+                        <button name="subscribe" type="object"
+                                string="Subscribe" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_session_wizard"
+                    name="Create user"
+                    src_model="openstar.user"
+                    res_model="openstar.wizarduser"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+
+
+        <menuitem id="configuration_menu_users" name="User"
+                  parent="main_openstar_menu"/>
+        <menuitem id="contact_menu" name="UserManger"
+                  parent="configuration_menu_users"
+                  action="contact_list_action"/>
+        <menuitem id="create_new_user" name="Create new user"
+                  parent="configuration_menu_users"
+                  action="launch_session_wizard"/>
+        <!-- Create menu cap 2-->
+        <menuitem id="create_new_user_meunu2" name="Create new user"
+                  parent="create_new_user"
+                  action="launch_session_wizard"
+        />
+        <!--<record model="ir.actions.act_window" id="contact_cat_list_action">-->
+        <!--<field name="name">Contact Tags</field>-->
+        <!--<field name="res_model">res.partner.category</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+        <!--</record>-->
+        <!--<menuitem id="contact_cat_menu" name="Contact Tags"-->
+        <!--parent="configuration_menu"-->
+        <!--action="contact_cat_list_action"/>-->
+
+        <!--<record model="res.partner.category" id="teacher1">-->
+        <!--<field name="name">Teacher / Level 1</field>-->
+        <!--</record>-->
+        <!--<record model="res.partner.category" id="teacher2">-->
+        <!--<field name="name">Teacher / Level 2</field>-->
+        <!--</record>-->
+    </data>
+</odoo>

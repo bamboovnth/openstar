@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="app_form_view">
+        <field name="name">app.form</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+
+    <!-- <record model="ir.ui.view" id="module_tree_view">
+        <field name="name">module.tree</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_tree"/>
+        <field name="arch" type="xml">
+            <field name="author" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>  -->
+
+
+    <record model="ir.actions.act_window" id="app_list_action">
+        <field name="name">Apps</field>
+        <field name="res_model">ir.module.module</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+
+        <field name="domain">[('state', '=','installed')]</field>
+        <!-- <field name="search_view_id" ref="view_module_filter"/> -->
+
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create"></p>
+        </field>
+    </record>
+
+    <menuitem id="main_openstar_menu" name="Open Star"/>
+
+    <menuitem name="Updates" id="openstar_update_menu" parent="main_openstar_menu" />
+    <!--sequence="7" chi so -->
+
+    <menuitem action="app_list_action" id="openstar_app_list" parent="openstar_update_menu"/>
+
+
+</odoo>
