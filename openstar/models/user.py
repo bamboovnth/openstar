@@ -17,3 +17,4 @@ class User(models.Model):
     #     for s in self.name:
     #         session.attendee_ids |= self.attendee_ids
     #     return {}
+

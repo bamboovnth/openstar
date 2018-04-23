@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'report', 'board'],
 
     # always loaded
     'data': [
@@ -31,7 +31,9 @@
         'views/session_workflow.xml',
         'openstarupdate/openstar_app_view.xml',
         'security/security.xml',
-        'views/user.xml'
+        'views/user.xml',
+        'report.xml',
+        'views/session_board.xml',
 
     ],
     # only loaded in demonstration mode
